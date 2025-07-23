@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generator</title>
+    <link rel="stylesheet" href="{% static 'generator/style.css' %}">
+    <link rel="shotcut icon" href="{% static 'favicon/qr.png' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>QR Generator</h1>
+        <p class="container-p">Generate beutiful QR Codes Instantly</p>
+    <form method='post'>
+        {% csrf_token %}
+        <p>Enter your text or URL</p>
+        <input type="text" name="qr_text" placeholder="Enter Your Text Or URL To Generate QR" required> <br>
+        <center>
+            <button type="submit">Generate</button>
+        </center>
+    </form>
+   
+    {% if qr_path %}
+   <div class="qr-box">
+    <img src="{{qr_path}}" alt="">
+
+    <center><a href="{{ qr_path }}" download>
+    <p type="button">Download QR</p>
+  </a></center>
+   </div>
+    {% endif %}
+    
+    </div>
+    <div class="footer">
+        <p>
+            &copy; 2025 <span>QR Generator</span>. All Right Reserved. <br> Build With ❤️ by <a href="https://www.linkedin.com/in/kunal-raj-pal/" target="_blank">Kunal Raj Pal</a>
+        </p>
+    </div>
+</body>
+</html>
